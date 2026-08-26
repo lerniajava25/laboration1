@@ -5,6 +5,7 @@ import java.util.*;
 
 import org.example.api.ApiClient;
 import org.example.api.ApiClient.EnergyPrice;
+import org.example.PriceAnalyzer.PriceAnalyzer;
 
 public class Main {
     static void main() {
@@ -13,6 +14,8 @@ public class Main {
         EnergyPrice[] prices = null;
         boolean active = true;
         var selectedArea = "";
+
+        PriceAnalyzer priceAnalyzer = new PriceAnalyzer();
 
         while (active) {
             IO.println("""
@@ -42,15 +45,11 @@ public class Main {
                                 prices = apiClient.getPrices(selectedArea);
 
                                 IO.println("Valt elområde: " + selectedArea);
-                                IO.println(
-                                        "Hämtade " + prices.length + " priser."
-                                );
+                                IO.println("Hämtade " + prices.length + " priser.");
 
                             } catch (IOException | InterruptedException e) {
                                 Thread.currentThread().interrupt();
-                                IO.println(
-                                        "Kunde inte hämta priser: " + e.getMessage()
-                                );
+                                IO.println("Kunde inte hämta priser: " + e.getMessage());
                             }
                         }
 
@@ -61,14 +60,18 @@ public class Main {
                 case "2" -> {
                     IO.println("Här ska min-, max- och medelpris visas för "
                             + selectedArea + ".");
+                    assert prices != null;
+                    priceAnalyzer.showMinMaxAverage(prices);
                 }
 
                 case "3" -> {
-                    IO.println("Här ska sorterade priser visas.");
+                    IO.println("Här visas sorterade el-priser.");
+                    priceAnalyzer.showSortedPrices(prices);
                 }
 
                 case "4" -> {
-                    IO.println("Här ska bästa 4-timmarsperiod visas.");
+                    IO.println("Här visade de billigaste laddningstimmarna i ett intervall av  4-timmarsperiod.");
+                    priceAnalyzer.showBestChargingTime(prices);
                 }
 
                 case "e" -> {
