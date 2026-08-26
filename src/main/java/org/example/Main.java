@@ -1,23 +1,83 @@
 package org.example;
+
+import java.io.IOException;
 import java.util.*;
+
+import org.example.api.ApiClient;
+import org.example.api.ApiClient.EnergyPrice;
 
 public class Main {
     static void main() {
         Scanner scanner = new Scanner(System.in);
-
-        IO.println("Välj nå!");
+        ApiClient apiClient = new ApiClient();
+        EnergyPrice[] prices = null;
         boolean active = true;
+        var selectedArea = "";
 
         while (active) {
-            int val = scanner.nextInt();
+            IO.println("""
+                    
+                    Elpriser – Analysverktyg
+                    ========================
+                    1. Välj elområde (SE1, SE2, SE3, SE4)
+                    2. Min, Max och Medelpris
+                    3. Sortera priser (lägst till högst)
+                    4. Bästa laddningstid (4h sammanhängande)
+                    e. Avsluta
+                    """);
 
-            switch (val) {
-                case 1 -> IO.println("Hello world!");
-                case 2 -> IO.println("Hello Pite!");
-                case 3 -> IO.println("Hello world!");
-                case 4 -> active = false;
+            IO.println("Välj ett alternativ:");
+            String choice = scanner.nextLine().trim().toLowerCase();
+
+            switch (choice) {
+                case "1" -> {
+                    IO.println("Välj elområde: SE1, SE2, SE3 eller SE4");
+                    String area = scanner.nextLine().trim().toUpperCase();
+
+                    switch (area) {
+                        case "SE1", "SE2", "SE3", "SE4" -> {
+                            selectedArea = area;
+
+                            try {
+                                prices = apiClient.getPrices(selectedArea);
+
+                                IO.println("Valt elområde: " + selectedArea);
+                                IO.println(
+                                        "Hämtade " + prices.length + " priser."
+                                );
+
+                            } catch (IOException | InterruptedException e) {
+                                Thread.currentThread().interrupt();
+                                IO.println(
+                                        "Kunde inte hämta priser: " + e.getMessage()
+                                );
+                            }
+                        }
+
+                        default -> IO.println("Ogiltigt val");
+                    }
+                }
+
+                case "2" -> {
+                    IO.println("Här ska min-, max- och medelpris visas för "
+                            + selectedArea + ".");
+                }
+
+                case "3" -> {
+                    IO.println("Här ska sorterade priser visas.");
+                }
+
+                case "4" -> {
+                    IO.println("Här ska bästa 4-timmarsperiod visas.");
+                }
+
+                case "e" -> {
+                    active = false;
+                    IO.println("Programmet avslutas.");
+                }
+
                 default -> IO.println("Ogiltigt val");
-            };
+            }
         }
     }
 }
