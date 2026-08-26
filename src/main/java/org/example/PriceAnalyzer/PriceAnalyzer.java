@@ -46,7 +46,6 @@ public class PriceAnalyzer {
             return;
         }
 
-        //För att inte mixtra med orginal arrayen.
         EnergyPrice[] sortedPrices = Arrays.copyOf(
                 prices,
                 prices.length
@@ -80,7 +79,6 @@ public class PriceAnalyzer {
 
         double currentTotal = 0;
 
-        // Summera de första 16 kvartarna.
         for (int i = 0; i < intervalsInFourHours; i++) {
             currentTotal += prices[i].SEK_per_kWh() * 100;
         }
@@ -88,7 +86,6 @@ public class PriceAnalyzer {
         double lowestTotal = currentTotal;
         int bestStartIndex = 0;
 
-        // Flytta fönstret ett kvartsteg i taget.
         for (int startIndex = 1;
              startIndex <= prices.length - intervalsInFourHours;
              startIndex++) {
@@ -107,9 +104,7 @@ public class PriceAnalyzer {
 
         EnergyPrice startPrice = prices[bestStartIndex];
 
-        EnergyPrice endPrice = prices[
-                bestStartIndex + intervalsInFourHours - 1
-                ];
+        EnergyPrice endPrice = prices[bestStartIndex + intervalsInFourHours - 1];
 
         double averagePrice = lowestTotal / intervalsInFourHours;
 
