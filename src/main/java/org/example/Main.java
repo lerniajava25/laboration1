@@ -58,20 +58,31 @@ public class Main {
                 }
 
                 case "2" -> {
-                    IO.println("Här ska min-, max- och medelpris visas för "
-                            + selectedArea + ".");
-                    assert prices != null;
-                    priceAnalyzer.showMinMaxAverage(prices);
+                    if (prices == null) {
+                        IO.println("Välj först ett elområde");
+                    } else {
+                        IO.println("Här ska min-, max- och medelpris visas för "
+                                + selectedArea + ".");
+                        priceAnalyzer.showMinMaxAverage(prices);
+                    }
                 }
 
                 case "3" -> {
-                    IO.println("Här visas sorterade el-priser.");
-                    priceAnalyzer.showSortedPrices(prices);
+                    if (prices == null) {
+                        IO.println("Välj först ett elområde");
+                    } else {
+                        IO.println("Här visas sorterade el-priser.");
+                        priceAnalyzer.showSortedPrices(prices);
+                    }
                 }
 
                 case "4" -> {
-                    IO.println("Här visade de billigaste laddningstimmarna i ett intervall av  4-timmarsperiod.");
-                    priceAnalyzer.showBestChargingTime(prices);
+                    if (prices == null) {
+                        IO.println("Välj först ett elområde");
+                    } else {
+                        IO.println("Här visade de billigaste laddningstimmarna i ett intervall av  4-timmarsperiod.");
+                        priceAnalyzer.showBestChargingTime(prices);
+                    }
                 }
 
                 case "e" -> {
