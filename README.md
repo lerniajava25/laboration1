@@ -1,15 +1,12 @@
 # laboration1
 
-"I projektets README.md fil, skriv en kort beskrivning av implementationen och hur du upplever att lösa uppgiften
-med Java jämfört med andra språk du programmerat i."
-
-Implimentation:
+Implementation:
 Försöker tänka objektorienterat med uppdelning av klassobjekt. Tre packages, en för menu, en för api och en för metoder.
-
-Använder mig av en Switch/case menu. Arrow function i Java var nytt för mig. Läst lite Java tidigare och tror inte de fanns då. Fick då skriva ut allting!
-Detta liknar hur det fungerar i t.ex. JavaScript.
+Använder mig av en Switch/case menu. Lambda arrow function i Java var nytt för mig. Läst lite Java tidigare och introducerades inte till lambda då. De liknar hur arrow functions fungerar i JavaScript.
 
 API:
-Det var ganska svårt att förstå hur allt hänger ihop men tror jag förstått tillslut. (jämnföra med hur det var att skriva api i js.)
+Det behövdes skrivas betydligt mer utförligt än med t.ex. JavaScript. Deras version av ett api är kortare och kan skrivas mera fritt. JS har även inbyggt stöd för json men Java behöver ett bibliotek. 
 
-metoder:
+Metoder: De skrivs på liknande sätt. Den största skillnaden är nog att det är typat. Exempelvis krävs det att parametrarna angivs i exakt rätt ordning och rätt typ. En annan skillnad är att metoderna måste skrivas i en klass i Java medan i JS kan du skriva en funktion mera fritt, exempelvis skriva en funktion i deklarationen av en variabel.
+
+Reflektion: JavaScript med sina bibliotek och ramverk blir mer och mer likt ett typat språk, samt att Java blir mer likt ett dynamiskt typat språk. Sanningen ligger förmodligen någonstans i mitten. I slutändan för programmeraren handlar det mer om preferenser och det aktuella projektets kravbild samt storlek. 
