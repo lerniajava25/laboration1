@@ -1,7 +1,9 @@
 # laboration1
 
 Implementation:
-Försöker tänka objektorienterat med uppdelning av klassobjekt. Tre packages, en för menu, en för api och en för metoder.
+Objektorienterat med uppdelning av klassobjekt. Tre packages, en för menu, en för api och en för metoder. Byggs med Maven. Biblioteket Jackson för att läsa json-format.
+
+Meny:
 Använder mig av en Switch/case menu. Lambda arrow function i Java var nytt för mig. Läst lite Java tidigare och introducerades inte till lambda då. De liknar hur arrow functions fungerar i JavaScript.
 
 API:
